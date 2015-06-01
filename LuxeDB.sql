@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 01, 2015 at 03:05 
+-- Generation Time: Jun 01, 2015 at 07:29 
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -35,14 +35,16 @@ CREATE TABLE IF NOT EXISTS `Clients` (
   `ClientAddress` varchar(30) COLLATE ascii_bin NOT NULL,
   `ClientBuyRate` double(2,1) NOT NULL,
   `ClientActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
 -- Dumping data for table `Clients`
 --
 
 INSERT INTO `Clients` (`ClientId`, `ClientName`, `ClientSurname`, `ClientMail`, `ClientPhone`, `ClientAddress`, `ClientBuyRate`, `ClientActive`) VALUES
-(8, 'Maestra', 'Guapa', 'maestraguapa@mucho.mucho', '123456789', 'Calle la belleza, Pais hermoso', 3.1, 1);
+(8, 'Maestra', 'Guapa', 'maestraguapa@mucho.mucho', '123456789', 'Calle la belleza, Pais hermoso', 3.1, 1),
+(9, 'ere', 'pap', 'pasfp', '123456789', 'erh', 0.0, 1),
+(10, 'Follamadres', 'Papafrita', 'kbjn', '123456789', 'jhkbkn?', 0.0, 1);
 
 -- --------------------------------------------------------
 
@@ -79,14 +81,16 @@ CREATE TABLE IF NOT EXISTS `Products` (
   `ProdName` varchar(20) COLLATE ascii_bin NOT NULL,
   `ProdPrice` decimal(6,2) NOT NULL,
   `ProdUnits` int(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
 -- Dumping data for table `Products`
 --
 
 INSERT INTO `Products` (`ProdId`, `ProdName`, `ProdPrice`, `ProdUnits`) VALUES
-(7, 'Leather Wallet', '19.99', 20);
+(7, 'Leather Wallet', '19.99', 20),
+(8, 'bragafaja', '123.00', 0),
+(9, 'sombrero embudo', '12.20', 10);
 
 -- --------------------------------------------------------
 
@@ -98,14 +102,16 @@ CREATE TABLE IF NOT EXISTS `ProductsBySales` (
   `IdProduct` int(11) NOT NULL,
   `IdSale` int(11) NOT NULL,
 `IdProductSale` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
 -- Dumping data for table `ProductsBySales`
 --
 
 INSERT INTO `ProductsBySales` (`IdProduct`, `IdSale`, `IdProductSale`) VALUES
-(7, 4, 2);
+(7, 14, 14),
+(8, 15, 15),
+(9, 17, 16);
 
 -- --------------------------------------------------------
 
@@ -116,15 +122,18 @@ INSERT INTO `ProductsBySales` (`IdProduct`, `IdSale`, `IdProductSale`) VALUES
 CREATE TABLE IF NOT EXISTS `Sales` (
 `SalesId` int(11) NOT NULL,
   `IdClient` int(11) NOT NULL,
-  `EmployeeID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+  `EmployeeID` int(11) NOT NULL,
+  `SaleDate` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
 -- Dumping data for table `Sales`
 --
 
-INSERT INTO `Sales` (`SalesId`, `IdClient`, `EmployeeID`) VALUES
-(4, 8, 1);
+INSERT INTO `Sales` (`SalesId`, `IdClient`, `EmployeeID`, `SaleDate`) VALUES
+(14, 8, 1, '2015-06-01 19:06:05'),
+(15, 9, 1, '2015-06-01 19:06:26'),
+(17, 10, 1, '2015-06-01 19:06:54');
 
 -- --------------------------------------------------------
 
@@ -193,7 +202,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `Clients`
 --
 ALTER TABLE `Clients`
-MODIFY `ClientId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `ClientId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `Employees`
 --
@@ -203,17 +212,17 @@ MODIFY `EmplID` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `Products`
 --
 ALTER TABLE `Products`
-MODIFY `ProdId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `ProdId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `ProductsBySales`
 --
 ALTER TABLE `ProductsBySales`
-MODIFY `IdProductSale` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `IdProductSale` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-MODIFY `SalesId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `SalesId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `user`
 --
