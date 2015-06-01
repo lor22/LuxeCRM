@@ -305,7 +305,7 @@
                         </div><!-- / calendar -->
                       
                   </div><!-- /col-lg-3 -->
-              </div><! --/row -->
+              </div><!--/row -->
           </section>
       </section>
 
@@ -370,24 +370,6 @@
                     {type: "block", label: "Regular event", }
                 ]
             });
-            
-           //  $('#newProd').click(function(){
-// 					$('#wrapp').hide();
-// 					$('#dashboard').removeClass();
-// 					// $('#products').addClass('active');
-//  					$('#newProd').addClass('active');
-// 					var id = 'formInventory';
-// 					url = id;
-// 					$.ajax({
-// 						type: 'POST',
-// 						url: url+'.php',         
-// 	    				success: function(response){
-// 							$('#main-content').html(response);
-// 	            			$('#main-content').show('');	       
-// 	        			},
-// 	    			});
-// 				});
-            
         });
         
         
