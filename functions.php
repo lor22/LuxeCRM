@@ -125,6 +125,20 @@
 			return null;
 		}
 	}
+	
+	function findProductByThis($name){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT * FROM Products WHERE ProdName LIKE "%'.$name.'%" ORDER BY ProdName ASC;');
+		return $stmt;
+	}
+	
+	function findClientByThis($name){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT * FROM Clients WHERE ClientName LIKE "%'.$name.'%" or ClientSurname LIKE "%'.$name.'%" or ClientMail LIKE "%'.$name.'%" ORDER BY ClientSurname ASC;');
+		return $stmt;
+	}
 	//END FINDERS
 	
 	//MISCELLANEOUS 
@@ -145,6 +159,7 @@
       Database::disconnect();
       return $result;
 	}
+
 	//END MISCELLANEOUS
 	
 	//VALIDATION
