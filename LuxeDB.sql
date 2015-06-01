@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: May 18, 2015 at 12:28 PM
--- Server version: 5.5.38
--- PHP Version: 5.6.2
+-- Host: localhost
+-- Generation Time: Jun 01, 2015 at 03:05 
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `LuxeDB`
@@ -20,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `Clients`
 --
 
-CREATE TABLE `Clients` (
+CREATE TABLE IF NOT EXISTS `Clients` (
 `ClientId` int(4) NOT NULL,
   `ClientName` varchar(20) COLLATE ascii_bin NOT NULL,
   `ClientSurname` varchar(20) COLLATE ascii_bin NOT NULL,
@@ -29,17 +35,14 @@ CREATE TABLE `Clients` (
   `ClientAddress` varchar(30) COLLATE ascii_bin NOT NULL,
   `ClientBuyRate` double(2,1) NOT NULL,
   `ClientActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
 -- Dumping data for table `Clients`
 --
 
 INSERT INTO `Clients` (`ClientId`, `ClientName`, `ClientSurname`, `ClientMail`, `ClientPhone`, `ClientAddress`, `ClientBuyRate`, `ClientActive`) VALUES
-(1, 'Pedro', 'Perez', 'pero@hola.com', '1344523', '28th street', 0.5, 1),
-(3, 'Luis', 'Galeson', 'luisgale@example.com', '22234123', 'Piotrkowska 89', 0.0, 1),
-(5, 'Lola', 'Mason', 'lolama@hello.com', '90139281', 'Liverpool 34', 0.0, 1),
-(6, 'Danielle', 'Clarkson', 'dacla@hyte.com', '89122736', 'Kraft 45', 0.0, 0);
+(8, 'Maestra', 'Guapa', 'maestraguapa@mucho.mucho', '123456789', 'Calle la belleza, Pais hermoso', 3.1, 1);
 
 -- --------------------------------------------------------
 
@@ -47,7 +50,7 @@ INSERT INTO `Clients` (`ClientId`, `ClientName`, `ClientSurname`, `ClientMail`, 
 -- Table structure for table `Employees`
 --
 
-CREATE TABLE `Employees` (
+CREATE TABLE IF NOT EXISTS `Employees` (
 `EmplID` int(4) NOT NULL,
   `EmpName` varchar(20) COLLATE ascii_bin NOT NULL,
   `EmpSurname` varchar(20) COLLATE ascii_bin NOT NULL,
@@ -63,7 +66,7 @@ CREATE TABLE `Employees` (
 --
 
 INSERT INTO `Employees` (`EmplID`, `EmpName`, `EmpSurname`, `EmpMail`, `EmpPhone`, `EmpSales`, `EmpWorkHrs`, `EmpPerformance`) VALUES
-(1, 'Juan', 'Garcia', 'juan@example.com', 3124157, 0.00, 0.00, 0.0);
+(1, 'Juan', 'Garcia', 'juan@example.com', 3124157, '0.00', '0.00', '0.0');
 
 -- --------------------------------------------------------
 
@@ -71,7 +74,7 @@ INSERT INTO `Employees` (`EmplID`, `EmpName`, `EmpSurname`, `EmpMail`, `EmpPhone
 -- Table structure for table `Products`
 --
 
-CREATE TABLE `Products` (
+CREATE TABLE IF NOT EXISTS `Products` (
 `ProdId` int(4) NOT NULL,
   `ProdName` varchar(20) COLLATE ascii_bin NOT NULL,
   `ProdPrice` decimal(6,2) NOT NULL,
@@ -83,7 +86,45 @@ CREATE TABLE `Products` (
 --
 
 INSERT INTO `Products` (`ProdId`, `ProdName`, `ProdPrice`, `ProdUnits`) VALUES
-(7, 'Leather Wallet', 19.99, 20);
+(7, 'Leather Wallet', '19.99', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ProductsBySales`
+--
+
+CREATE TABLE IF NOT EXISTS `ProductsBySales` (
+  `IdProduct` int(11) NOT NULL,
+  `IdSale` int(11) NOT NULL,
+`IdProductSale` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+
+--
+-- Dumping data for table `ProductsBySales`
+--
+
+INSERT INTO `ProductsBySales` (`IdProduct`, `IdSale`, `IdProductSale`) VALUES
+(7, 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Sales`
+--
+
+CREATE TABLE IF NOT EXISTS `Sales` (
+`SalesId` int(11) NOT NULL,
+  `IdClient` int(11) NOT NULL,
+  `EmployeeID` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+
+--
+-- Dumping data for table `Sales`
+--
+
+INSERT INTO `Sales` (`SalesId`, `IdClient`, `EmployeeID`) VALUES
+(4, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +132,7 @@ INSERT INTO `Products` (`ProdId`, `ProdName`, `ProdPrice`, `ProdUnits`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
 `id` int(20) NOT NULL,
   `password` varchar(60) NOT NULL DEFAULT '',
   `username` varchar(50) NOT NULL DEFAULT ''
@@ -112,19 +153,31 @@ INSERT INTO `user` (`id`, `password`, `username`) VALUES
 -- Indexes for table `Clients`
 --
 ALTER TABLE `Clients`
- ADD PRIMARY KEY (`ClientId`);
+ ADD PRIMARY KEY (`ClientId`), ADD KEY `ClientId` (`ClientId`);
 
 --
 -- Indexes for table `Employees`
 --
 ALTER TABLE `Employees`
- ADD PRIMARY KEY (`EmplID`);
+ ADD PRIMARY KEY (`EmplID`), ADD KEY `EmplID` (`EmplID`);
 
 --
 -- Indexes for table `Products`
 --
 ALTER TABLE `Products`
- ADD PRIMARY KEY (`ProdId`);
+ ADD PRIMARY KEY (`ProdId`), ADD KEY `ProdId` (`ProdId`), ADD KEY `ProdId_2` (`ProdId`);
+
+--
+-- Indexes for table `ProductsBySales`
+--
+ALTER TABLE `ProductsBySales`
+ ADD PRIMARY KEY (`IdProductSale`), ADD KEY `IdProduct` (`IdProduct`,`IdSale`), ADD KEY `IdSale` (`IdSale`);
+
+--
+-- Indexes for table `Sales`
+--
+ALTER TABLE `Sales`
+ ADD PRIMARY KEY (`SalesId`), ADD KEY `SalesId` (`SalesId`), ADD KEY `IdClient` (`IdClient`), ADD KEY `EmployeeID` (`EmployeeID`);
 
 --
 -- Indexes for table `user`
@@ -140,7 +193,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `Clients`
 --
 ALTER TABLE `Clients`
-MODIFY `ClientId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `ClientId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `Employees`
 --
@@ -152,7 +205,38 @@ MODIFY `EmplID` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 ALTER TABLE `Products`
 MODIFY `ProdId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `ProductsBySales`
+--
+ALTER TABLE `ProductsBySales`
+MODIFY `IdProductSale` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `Sales`
+--
+ALTER TABLE `Sales`
+MODIFY `SalesId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
 MODIFY `id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `ProductsBySales`
+--
+ALTER TABLE `ProductsBySales`
+ADD CONSTRAINT `ProductsBySales_ibfk_1` FOREIGN KEY (`IdProduct`) REFERENCES `Products` (`ProdId`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `ProductsBySales_ibfk_2` FOREIGN KEY (`IdSale`) REFERENCES `Sales` (`SalesId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Sales`
+--
+ALTER TABLE `Sales`
+ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`IdClient`) REFERENCES `Clients` (`ClientId`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`EmployeeID`) REFERENCES `Employees` (`EmplID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
