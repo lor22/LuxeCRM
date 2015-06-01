@@ -19,11 +19,11 @@
          return $result;
 	}
 
-	function editProduct($name, $price, $units, $id){
+	function editProduct($name, $price, $units, $active, $id){
 	      $db = Database::connect();
 	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	      $stmt = $db->prepare('UPDATE Products SET ProdName=?, ProdPrice=?, ProdUnits=? WHERE ProdId=?');
-	      $result = $stmt->execute(array($name, $price, $units, $id));
+	      $stmt = $db->prepare('UPDATE Products SET ProdName=?, ProdPrice=?, ProdUnits=?, ProdActive=? WHERE ProdId=?');
+	      $result = $stmt->execute(array($name, $price, $units, $active, $id));
          Database::disconnect();
          return $result;
 	}
@@ -70,6 +70,22 @@
 	      $db = Database::connect();
 	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	      $stmt = $db->query('select * from Clients where ClientActive = "NO";');
+         Database::disconnect();
+         return $stmt;
+	}
+	
+	function viewActiveProducts(){
+	      $db = Database::connect();
+	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	      $stmt = $db->query('select * from Products where ProdActive = "YES";');
+         Database::disconnect();
+         return $stmt;
+	}
+	
+	function viewNonActiveProducts(){
+	      $db = Database::connect();
+	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	      $stmt = $db->query('select * from Products where ProdActive = "NO";');
          Database::disconnect();
          return $stmt;
 	}

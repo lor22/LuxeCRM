@@ -87,7 +87,7 @@
                           <span>Clients</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a href="#">Insert</a></li>
+                          <li class="active"><a href="formClient.php">Insert</a></li>
                           <li><a  href="clients.php">Check</a></li>
                       </ul>
                   </li>

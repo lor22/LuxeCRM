@@ -23,6 +23,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+	 <link href="assets/css/bootstrap-switch.css" rel="stylesheet">
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
         
@@ -145,6 +146,20 @@
                               </div>
                           </div>
 								  
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Active</label>
+                              <div class="col-sm-6 text-left">
+                                  <input type="checkbox" name="my-checkbox">
+                              </div>
+                          </div>
+								  
+                          <div class="form-group" style="display: none;">
+                              <label class="col-sm-2 col-sm-2 control-label"></label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="productActive" value="<?php echo $prod['ProdActive'];?>">
+                              </div>
+                          </div>
+								  
                           <div class="form-group"  style="display: none;">
                               <label class="col-sm-2 col-sm-2 control-label"></label>
                               <div class="col-sm-10">
@@ -250,6 +265,7 @@
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	 <script src="assets/bootstrap-switch.js"></script>
 
 
     <!--common script for all pages-->
@@ -259,6 +275,21 @@
     
   <script>
       //custom select box
+	 
+	 $( document ).ready(function() {
+ 	 	$("[name='my-checkbox']").bootstrapSwitch();
+ 		$("[name='my-checkbox']").bootstrapSwitch("size", 'normal');
+		
+		var isActive = $('input[name="productActive"]').val();
+		
+		if(isActive === 'YES'){
+			$('input[name="my-checkbox"]').bootstrapSwitch('state', true);
+		}else{
+			$('input[name="my-checkbox"]').bootstrapSwitch('state', false);
+		}
+		
+		
+	 });
 
       $(function(){
           $('select.styled').customSelect();

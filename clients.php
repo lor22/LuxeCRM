@@ -87,8 +87,8 @@
                           <span>Clients</span>
                       </a>
                       <ul class="sub">
-                          <li id="newClient" style="cursor: pointer;"><a href="formClient.php">Insert</a></li>
-                          <li class="active"><a href="#">Check</a></li>
+                          <li><a href="formClient.php">Insert</a></li>
+                          <li class="active"><a href="clients.php">Check</a></li>
                       </ul>
                   </li>
               </ul>
@@ -193,7 +193,7 @@
 	                  	  </div><!--/content-panel -->
 	            </div><!-- /col-md-12 -->
 					
-          	</div>
+          	</div><!-- /row-->
 			
 		</section><!--/wrapper -->
       </section><!-- /MAIN CONTENT -->

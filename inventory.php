@@ -77,7 +77,7 @@
                       </a>
                       <ul class="sub">
                           <li><a href="formInventory.php">Insert</a></li>
-                          <li class="active"><a href="#">Check</a></li>
+                          <li class="active"><a href="inventory.php">Check</a></li>
                       </ul>
                   </li>
 						
@@ -87,8 +87,8 @@
                           <span>Clients</span>
                       </a>
                       <ul class="sub">
-                          <li id="newClient" style="cursor: pointer;"><a href="formClient.php">Insert</a></li>
-                          <li><a  href="clients.php">Check</a></li>
+                          <li><a href="formClient.php">Insert</a></li>
+                          <li><a href="clients.php">Check</a></li>
                       </ul>
                   </li>
               </ul>
@@ -104,24 +104,26 @@
       <section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i>Inventory</h3>
-          	<div class="row mt">
+          	<div class="row">
           		<div class="col-md-12">
 	                  	  <div class="content-panel">
 	                  	  	  <h4><i class="fa fa-angle-right"></i>Products</h4>
 	                  	  	  <hr>
-		                      <table class="table">
+		                      <table class="table table-hover">
                               <thead>
                                  <tr>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Units</th>
+												<th>Product Active</th>
+												<th>Edit</th>
 												<th></th>
                                  </tr>
                               </thead>
                               <tbody>
                                  <?php
-                                    $results = viewProducts();
+                                    $results = viewActiveProducts();
                                     if($results -> rowCount()<=0){
                                        echo '<tr><td>No products available</td></tr>';
                                     }else{
@@ -131,9 +133,9 @@
                                           echo '<td>'. $row['ProdName'].'</td>';
                                           echo '<td>'. $row['ProdPrice'].'</td>';
                                           echo '<td>'. $row['ProdUnits'].'</td>';
+														echo '<td><span class="label label-success">'.$row['ProdActive'].'</span></td>';
                                           echo '<td>
                                                <a href="editProduct.php?id='.$row['ProdId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                               <a href="controlador.php?id='.$row['ProdId'].'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                </td>';
                                           echo '</tr>';
                                        }
@@ -143,6 +145,48 @@
                             </table>
 	                  	  </div><!--/content-panel -->
 	                  </div><!-- /col-md-12 -->
+							
+		          		<div class="col-md-12 mt">
+			                  	  <div class="content-panel">
+			                  	  	  <h4><i class="fa fa-angle-right"></i>Products</h4>
+			                  	  	  <hr>
+				                      <table class="table">
+		                              <thead>
+		                                 <tr>
+		                                    <th>#</th>
+		                                    <th>Name</th>
+		                                    <th>Price</th>
+		                                    <th>Units</th>
+														<th>Product Active</th>
+														<th>Edit</th>
+														<th></th>
+		                                 </tr>
+		                              </thead>
+		                              <tbody>
+		                                 <?php
+		                                    $results = viewNonActiveProducts();
+		                                    if($results -> rowCount()<=0){
+		                                       echo '<tr><td>No products available</td></tr>';
+		                                    }else{
+		                                       foreach ($results as $row) {
+		                                          echo '<tr>';
+		                                          echo '<td>'. $row['ProdId'] . '</td>';
+		                                          echo '<td>'. $row['ProdName'].'</td>';
+		                                          echo '<td>'. $row['ProdPrice'].'</td>';
+		                                          echo '<td>'. $row['ProdUnits'].'</td>';
+																echo '<td><span class="label label-danger">'.$row['ProdActive'].'</span></td>';
+		                                          echo '<td>
+		                                               <a href="editProduct.php?id='.$row['ProdId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+		                                               </td>';
+		                                          echo '</tr>';
+		                                       }
+		                                    }
+		                                 ?>
+		                              </tbody>
+		                            </table>
+			                  	  </div><!--/content-panel -->
+			                  </div><!-- /col-md-12 -->
+							
           	</div>
 			
 		</section><!--/wrapper -->
