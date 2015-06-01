@@ -119,60 +119,60 @@
                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn">
                       			<div class="white-header">
-						  			<h5>TOP PRODUCT</h5>
+						  					<h5>TOP PRODUCT</h5>
                       			</div>
-								<div class="row">
-									<div class="col-sm-6 col-xs-6 goleft">
-										<p><i class="fa fa-heart"></i><?php $topP = topProduct();
-											$prodName = $topP['ProdName'];
-											echo $prodName;?> </p>
-									</div>
-									<div class="col-sm-6 col-xs-6"></div>
+										<div class="row">
+											<div class="col-sm-6 col-xs-6 goleft">
+												<p><i class="fa fa-heart"></i><?php $topP = topProduct();
+													$prodName = $topP['ProdName'];
+													echo $prodName;?> </p>
+											</div>
+											<div class="col-sm-6 col-xs-6"></div>
 	                      		</div>
 	                      		<div class="centered">
-										<img src="assets/img/product.png" width="120">
+											<img src="assets/img/product.png" width="120">
 	                      		</div>
                       		</div>
                       	</div><!-- /col-md-4 -->
                       	
                       	<div class="col-md-4 col-sm-4 mb">
-							<!-- REVENUE PANEL -->
-							<div class="darkblue-panel pn">
-								<div class="darkblue-header">
-									<h5>REVENUE</h5>
-								</div>
-								<div class="chart mt">
-									<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-								</div>
-								<p class="mt"><b>$ 17,980</b><br/>Month Income</p>
-							</div>
-						</div><!-- /col-md-4 -->
+									<!-- REVENUE PANEL -->
+									<div class="darkblue-panel pn">
+										<div class="darkblue-header">
+											<h5>REVENUE</h5>
+										</div>
+										<div class="chart mt">
+											<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+										</div>
+										<p class="mt"><b>$ 17,980</b><br/>Month Income</p>
+									</div>
+								</div><!-- /col-md-4 -->
                       	
-						<div class="col-md-4 mb">
-							<!-- WHITE PANEL - TOP USER -->
-							<div class="white-panel pn">
-								<div class="white-header">
-									<h5>TOP CUSTOMER</h5>
-								</div>
-								<p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
-								<p><b><?php $top = topUser();
-												$name = $top['ClientName'];
-												$surname = $top['ClientSurname'];
-												$buyRate = $top['ClientBuyRate'];
-												$mail = $top['ClientMail'];
-												echo $name.' '.$surname;?></b></p>
-								<div class="row">
-									<div class="col-md-6">
-										<p class="small mt">Mail</p>
-										<p><?php echo $mail;?></p>
+								<div class="col-md-4 mb">
+									<!-- WHITE PANEL - TOP USER -->
+									<div class="white-panel pn">
+										<div class="white-header">
+											<h5>TOP CUSTOMER</h5>
+										</div>
+										<p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+										<p><b><?php $top = topUser();
+													$name = $top['ClientName'];
+													$surname = $top['ClientSurname'];
+													$buyRate = $top['ClientBuyRate'];
+													$mail = $top['ClientMail'];
+													echo $name.' '.$surname;?></b></p>
+										<div class="row">
+											<div class="col-md-6">
+												<p class="small mt">Mail</p>
+												<p><?php echo $mail;?></p>
+											</div>
+											<div class="col-md-6">
+												<p class="small mt">Buy Rate per Month</p>
+												<p><?php echo $buyRate;?>%</p>
+											</div>
+										</div>
 									</div>
-									<div class="col-md-6">
-										<p class="small mt">Buy Rate per Month</p>
-										<p><?php echo $buyRate;?>%</p>
-									</div>
-								</div>
-							</div>
-						</div><!-- /col-md-4 -->
+								</div><!-- /col-md-4 -->
                       	
 
                     </div><!-- /row -->
