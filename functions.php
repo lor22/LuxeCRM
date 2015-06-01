@@ -1,7 +1,7 @@
 <?php 
 	include 'database.php';
 	
-	
+	//INSERTS
 	function insertNewProduct($name, $price, $units){
 	      $db = Database::connect();
 	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -19,7 +19,9 @@
          Database::disconnect();
          return $result;
 	}
+	//END INSERTS
 
+	//EDITS
 	function editProduct($name, $price, $units, $active, $id){
 	      $db = Database::connect();
 	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -37,20 +39,9 @@
          Database::disconnect();
          return $result;
 	}
+	//END EDITS
 	
-	function deleteProduct($id){
-		$db = Database::connect();
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $db->prepare('DELETE FROM Products WHERE ProdId=?');
-		$result = $stmt->execute(array($id));
-		Database::disconnect();
-		if($result == 1){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
+	//VIEWS
 	function viewProducts(){
 	      $db = Database::connect();
 	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -90,7 +81,9 @@
          Database::disconnect();
          return $stmt;
 	}
+	//END VIEWS
 	
+	//FINDERS
 	function findUserByName($usr){
 		$db = Database::connect();
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -132,7 +125,9 @@
 			return null;
 		}
 	}
+	//END FINDERS
 	
+	//MISCELLANEOUS 
 	function topUser(){
 		$db = Database::connect();
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -150,7 +145,9 @@
       Database::disconnect();
       return $result;
 	}
+	//END MISCELLANEOUS
 	
+	//VALIDATION
 	function validatePassword($uid, $pwd){
          $db = Database::connect();
          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -191,6 +188,7 @@
 			exit;
 		}
 	}
+	//END VALIDATION
 	
 	
 ?>
