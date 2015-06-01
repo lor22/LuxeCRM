@@ -3,8 +3,8 @@ class Database
 {
 	private static $dbName = 'LuxeDB'; 
 	private static $dbHost = 'localhost';
-	private static $dbUsername = 'root';
-	private static $dbUserPassword = 'root';
+	private static $dbUsername = 'root';//CHANGE HERE IF USERNAME IS DIFFERENT!!
+	private static $dbUserPassword = 'root';//CHANGE HERE IF PW IS DIFFERENT!!
 	
 	private static $cont  = null;
 	

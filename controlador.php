@@ -18,14 +18,21 @@
 		   }else{
 		      header('Location: login.php');
 		   }
-		   break;
+		break;
 		case "newProduct":
 		   if(insertNewProduct($_POST["prodName"], $_POST["prodPrice"], $_POST["prodUnits"])){
 		      header('Location: inventory.php');
 		   }else{
 		      //error
 		   }
-		   break;
+		break;
+		case "newClient":
+			if(insertNewClient($_POST["clientName"], $_POST["clientSurname"], $_POST["clientMail"], $_POST["clientPhone"], $_POST["clientAddress"])){
+				header('Location: clients.php');
+			}else{
+			   //error
+			}
+		break;
 		case "editProduct":
 			if(isset($_POST['my-checkbox'])){
 	    		$isActive = "YES";
@@ -37,14 +44,7 @@
 			}else{
 				//error
 			}
-			break;
-		case "newClient":
-			if(insertNewClient($_POST["clientName"], $_POST["clientSurname"], $_POST["clientMail"], $_POST["clientPhone"], $_POST["clientAddress"])){
-				header('Location: clients.php');
-			}else{
-			   //error
-			}
-			break;	
+		break;	
 		case "editClient":
 			if(isset($_POST['my-checkbox'])){
 		    	$isActive = "YES";
@@ -56,19 +56,8 @@
 			}else{
 				//error
 			}
-			break;
-	}
-
-	if($_GET["id"]){
-		$prodId = $_GET["id"];
-		if(deleteProduct($prodId)){
-			header('Location: inventory.php');
-		}else{
-			echo 'error deleting';
-		}	
+		break;
 	}
 	
-	
-
 
 ?>
