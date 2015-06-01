@@ -125,7 +125,7 @@
 					</div><!-- /col-lg-12 -->
 				</div><!-- /row -->
 				
-          	<div class="row">
+          	<div class="row mt">
           		<div class="col-md-12">
 	                  	  <div class="content-panel">
 	                  	  	  <h4><i class="fa fa-angle-right"></i>Products</h4>

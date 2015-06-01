@@ -159,6 +159,27 @@
       Database::disconnect();
       return $result;
 	}
+	
+	function fiveLastClients(){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT Clients.`ClientName`, Clients.`ClientSurname` FROM Clients JOIN `Sales` ON Sales.`IdClient` = Clients.`ClientId` ORDER BY `SaleDate` DESC LIMIT 0,5');
+		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		//return $results;
+		return $stmt;
+	}
+	
+	function fiveLastProducts(){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT Products.`ProdName` FROM Products JOIN `ProductsBySales` ON Products.ProdId = ProductsBySales.IdProduct ORDER BY IdProductSale DESC LIMIT 0,5');
+		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		//return $results;
+		return $stmt;
+	}
+		
 
 	//END MISCELLANEOUS
 	
