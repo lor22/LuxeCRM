@@ -76,7 +76,7 @@
                           <span>Products</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a href=#>Insert</a></li>
+                          <li class="active"><a href=formInventory.php>Insert</a></li>
                           <li><a href="inventory.php">Check</a></li>
                       </ul>
                   </li>

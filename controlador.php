@@ -27,7 +27,12 @@
 		   }
 		   break;
 		case "editProduct":
-			if(editProduct($_POST["prodName"], $_POST["prodPrice"], $_POST["prodUnits"], $_POST["prodId"])){
+			if(isset($_POST['my-checkbox'])){
+	    		$isActive = "YES";
+			}else{
+	    		$isActive = "NO";
+			}
+			if(editProduct($_POST["prodName"], $_POST["prodPrice"], $_POST["prodUnits"], $isActive, $_POST["prodId"])){
 				header('Location: inventory.php');
 			}else{
 				//error
