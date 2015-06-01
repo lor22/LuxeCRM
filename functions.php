@@ -1,6 +1,7 @@
 <?php 
 	include 'database.php';
 	
+	
 	function insertNewProduct($name, $price, $units){
 	      $db = Database::connect();
 	      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
