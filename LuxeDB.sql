@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 01, 2015 at 07:29 
+-- Generation Time: Jun 01, 2015 at 09:03 
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Clients` (
   `ClientPhone` varchar(11) COLLATE ascii_bin NOT NULL DEFAULT '',
   `ClientAddress` varchar(30) COLLATE ascii_bin NOT NULL,
   `ClientBuyRate` double(2,1) NOT NULL,
-  `ClientActive` tinyint(1) NOT NULL DEFAULT '1'
+  `ClientActive` enum('YES','NO') COLLATE ascii_bin NOT NULL DEFAULT 'YES'
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `Clients` (
 --
 
 INSERT INTO `Clients` (`ClientId`, `ClientName`, `ClientSurname`, `ClientMail`, `ClientPhone`, `ClientAddress`, `ClientBuyRate`, `ClientActive`) VALUES
-(8, 'Maestra', 'Guapa', 'maestraguapa@mucho.mucho', '123456789', 'Calle la belleza, Pais hermoso', 3.1, 1),
-(9, 'ere', 'pap', 'pasfp', '123456789', 'erh', 0.0, 1),
-(10, 'Follamadres', 'Papafrita', 'kbjn', '123456789', 'jhkbkn?', 0.0, 1);
+(8, 'Maestra', 'Guapa', 'maestraguapa@mucho.mucho', '123456789', 'Calle la belleza, Pais hermoso', 3.1, 'YES'),
+(9, 'ere', 'pap', 'pasfp', '123456789', 'erh', 0.0, 'YES'),
+(10, 'Follamadres', 'Papafrita', 'kbjn', '123456789', 'jhkbkn?', 0.0, 'YES');
 
 -- --------------------------------------------------------
 
@@ -80,17 +80,18 @@ CREATE TABLE IF NOT EXISTS `Products` (
 `ProdId` int(4) NOT NULL,
   `ProdName` varchar(20) COLLATE ascii_bin NOT NULL,
   `ProdPrice` decimal(6,2) NOT NULL,
-  `ProdUnits` int(2) NOT NULL
+  `ProdUnits` int(2) NOT NULL,
+  `ProdActive` enum('YES','NO') COLLATE ascii_bin NOT NULL DEFAULT 'YES'
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
 -- Dumping data for table `Products`
 --
 
-INSERT INTO `Products` (`ProdId`, `ProdName`, `ProdPrice`, `ProdUnits`) VALUES
-(7, 'Leather Wallet', '19.99', 20),
-(8, 'bragafaja', '123.00', 0),
-(9, 'sombrero embudo', '12.20', 10);
+INSERT INTO `Products` (`ProdId`, `ProdName`, `ProdPrice`, `ProdUnits`, `ProdActive`) VALUES
+(7, 'Leather Wallet', '19.99', 20, 'YES'),
+(8, 'bragafaja', '123.00', 0, 'YES'),
+(9, 'sombrero embudo', '12.20', 10, 'YES');
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `Sales` (
 `SalesId` int(11) NOT NULL,
   `IdClient` int(11) NOT NULL,
   `EmployeeID` int(11) NOT NULL,
-  `SaleDate` datetime DEFAULT CURRENT_TIMESTAMP
+  `SaleDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
@@ -131,9 +132,9 @@ CREATE TABLE IF NOT EXISTS `Sales` (
 --
 
 INSERT INTO `Sales` (`SalesId`, `IdClient`, `EmployeeID`, `SaleDate`) VALUES
-(14, 8, 1, '2015-06-01 19:06:05'),
-(15, 9, 1, '2015-06-01 19:06:26'),
-(17, 10, 1, '2015-06-01 19:06:54');
+(14, 8, 1, '2015-06-01 17:06:05'),
+(15, 9, 1, '2015-06-01 17:06:26'),
+(17, 10, 1, '2015-06-01 17:06:54');
 
 -- --------------------------------------------------------
 
