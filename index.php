@@ -95,6 +95,12 @@
                           <li><a  href="clients.php">Check</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="sales.php">
+                          <i class="fa fa-money"></i>
+                          <span>Sales</span>
+                      </a>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -116,24 +122,17 @@
                       
                       <div class="row mt">
                       	
-                      	<div class="col-md-4 col-sm-4 mb">
-                      		<div class="white-panel pn">
-                      			<div class="white-header">
-						  					<h5>TOP PRODUCT</h5>
-                      			</div>
-										<div class="row">
-											<div class="col-sm-6 col-xs-6 goleft">
-												<p><i class="fa fa-heart"></i><?php $topP = topProduct();
+								<div class="col-md-4 col-md-4">
+									<div class="product-panel-2 pn">
+										<div class="badge badge-hot">HOT</div>
+										<img src="assets/img/product.jpg" width="200" alt="">
+										<h5 class="mt"><?php $topP = topProduct();
 													$prodName = $topP['ProdName'];
-													echo $prodName;?> </p>
-											</div>
-											<div class="col-sm-6 col-xs-6"></div>
-	                      		</div>
-	                      		<div class="centered">
-											<img src="assets/img/product.png" width="120">
-	                      		</div>
-                      		</div>
-                      	</div><!-- /col-md-4 -->
+													echo $prodName;?></h5>
+										<h6>TOTAL SALES: 1388</h6>
+										<a class="btn btn-small btn-theme04" href="sales.php">FULL REPORT</a>
+									</div>
+								</div><!-- /col-md-4 -->
                       	
                       	<div class="col-md-4 col-sm-4 mb">
 									<!-- REVENUE PANEL -->
@@ -154,7 +153,7 @@
 										<div class="white-header">
 											<h5>TOP CUSTOMER</h5>
 										</div>
-										<p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+										<p><img src="assets/img/clients/ui-zac.jpg" class="img-circle" width="80"></p>
 										<p><b><?php $top = topUser();
 													$name = $top['ClientName'];
 													$surname = $top['ClientSurname'];
@@ -259,7 +258,7 @@
 							                       			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
 							                       		</div>
 							                       		<div class="details">
-							                       			<p><muted>Sales</muted><br/>
+							                       			<p><muted>Date of sell <?php echo $row['SaleDate'];?></muted><br/>
 							                       		  		<a><?php echo $row['ClientName'].' '.$row['ClientSurname'];?></a> bought this product <a><?php echo $i[$index2];?></a><br/>
 							                       			</p>
 							                       		</div>

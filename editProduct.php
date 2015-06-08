@@ -100,7 +100,12 @@
                           <li><a href="clients.php">Check</a></li>
                       </ul>
                   </li>
-						
+                  <li class="sub-menu">
+                      <a href="sales.php">
+                          <i class="fa fa-money"></i>
+                          <span>Sales</span>
+                      </a>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>

@@ -42,5 +42,7 @@
                       </table>
                	  </div><!--/content-panel -->
          </div><!-- /col-md-12 -->
-		
+			<div class="col-md-6 mt">
+				<a href="inventory.php" class="btn btn-theme"><i class="fa fa-arrow-left"></i> Return</a>
+			</div>
 	</section><!--/wrapper --> 

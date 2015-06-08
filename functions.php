@@ -81,6 +81,18 @@
          Database::disconnect();
          return $stmt;
 	}
+	
+	function viewSales(){
+      $db = Database::connect();
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $db->query('SELECT Sales.SalesId, Clients.ClientName, Clients.ClientSurname, Products.ProdName, Sales.SaleDate 
+		FROM Clients, Sales, ProductsBySales, Products
+		WHERE Sales.IdClient = Clients.ClientId
+		AND Sales.SalesId = ProductsBySales.IdSale
+		AND ProductsBySales.IdProduct = Products.ProdId');
+      Database::disconnect();
+      return $stmt;
+	}
 	//END VIEWS
 	
 	//FINDERS
@@ -139,6 +151,13 @@
 		$stmt = $db->query('SELECT * FROM Clients WHERE ClientName LIKE "%'.$name.'%" or ClientSurname LIKE "%'.$name.'%" or ClientMail LIKE "%'.$name.'%" ORDER BY ClientSurname ASC;');
 		return $stmt;
 	}
+	
+	function findSaleByThis($name){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT Sales.SalesId, Clients.ClientName, Clients.ClientSurname, Products.ProdName, Sales.SaleDate FROM Sales, Products, Clients, ProductsBySales WHERE Products.ProdId = ProductsBySales.`IdProduct` and Sales.`IdClient` = Clients.`ClientId` and Sales.`SalesId` = ProductsBySales.`IdSale` and Products.`ProdName` LIKE "%'.$name.'%"');
+		return $stmt;
+	}
 	//END FINDERS
 	
 	//MISCELLANEOUS 
@@ -163,7 +182,11 @@
 	function fiveLastClients(){
 		$db = Database::connect();
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $db->query('SELECT Clients.`ClientName`, Clients.`ClientSurname` FROM Clients JOIN `Sales` ON Sales.`IdClient` = Clients.`ClientId` ORDER BY `SaleDate` DESC LIMIT 0,5');
+		$stmt = $db->query('SELECT Clients.ClientName, Clients.ClientSurname, Sales.SaleDate 
+			FROM Clients, Sales, ProductsBySales
+			WHERE Sales.`IdClient` = Clients.`ClientId`
+			AND Sales.`SalesId` = ProductsBySales.`IdSale`
+			ORDER BY `SaleDate` DESC LIMIT 5');
 		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		Database::disconnect();
 		//return $results;

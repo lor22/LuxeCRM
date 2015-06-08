@@ -10,7 +10,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Inventory New Product</title>
+    <title>Sales</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>Luxe</b></a>
+            <a href="index.php" class="logo"><b>Luxe</b></a>
             <!--logo end-->
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
@@ -54,7 +54,7 @@
       <!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
-       <!--sidebar start-->
+      <!--sidebar start-->
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
@@ -71,18 +71,18 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a class="active" href="javascript:;" >
+                      <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Products</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a href=formInventory.php>Insert</a></li>
+                          <li><a href="formInventory.php">Insert</a></li>
                           <li><a href="inventory.php">Check</a></li>
                       </ul>
                   </li>
 						
                   <li class="sub-menu">
-                      <a id="products" href="javascript:;" >
+                      <a href="javascript:;" >
                           <i class="fa fa-user"></i>
                           <span>Clients</span>
                       </a>
@@ -92,7 +92,7 @@
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="sales.php">
+                      <a class="active" href="sales.php">
                           <i class="fa fa-money"></i>
                           <span>Sales</span>
                       </a>
@@ -109,48 +109,58 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i>Inventory</h3>
+          	<h3><i class="fa fa-angle-right"></i> All Sales</h3>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-panel">
+							<form class="form-inline">
+								<div class="form-group">
+									<label class="sr-only">Sales</label>
+									<input type="text" class="form-control" name="saleSomething" id="saleSomething" placeholder="Search Sale"><!--Edit this for sales-->
+								</div>
+								<span id="saleFinder" class="btn btn-theme">Find</span>
+							</form>
+						</div><!-- /form-panel -->
+					</div><!-- /col-lg-12 -->
+				</div><!-- /row -->
+				
           	<div class="row mt">
-          	   <div class="col-lg-12">
-                  <div class="form-panel">
-                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> New Product</h4>
-                      <form class="form-horizontal style-form" action="controlador.php" method="post">
-                           <div class="form-group" style="display: none;">
-                              <label class="col-sm-2 col-sm-2 control-label"></label>
-                              <div class="col-sm-10">
-                                 <input name="function" id="function" type="text" value="newProduct" style="display: none;">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Name</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="prodName">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Price</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="prodPrice">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">No Units</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="prodUnits">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <div class="col-lg-10">
-                                  <button type="submit" class="btn btn-primary">Insert</button>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-          		</div><!-- col-lg-12--> 
-          	</div>
+          		<div class="col-md-12">
+	                  	  <div class="content-panel">
+	                  	  	  <h4><i class="fa fa-angle-right"></i>Sales</h4>
+	                  	  	  <hr>
+		                      <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Product</th>
+                                    <th>Date</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <?php
+                                    $results = viewSales();
+                                    if($results -> rowCount()<=0){
+                                       echo '<tr><td>No clients available</td></tr>';
+                                    }else{
+                                       foreach ($results as $row) {
+                                          echo '<tr>';
+                                          echo '<td>'.$row['SalesId']. '</td>';
+                                          echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
+                                          echo '<td>'.$row['ProdName'].'</td>';
+                                          echo '<td>'.$row['SaleDate'].'</td>';
+                                          echo '</tr>';
+                                       }
+                                    }
+                                 ?>
+                              </tbody>
+                            </table>
+	                  	  </div><!--/content-panel -->
+	            </div><!-- /col-md-12 -->
+					
+          	</div><!-- /row-->
 			
 		</section><!--/wrapper -->
       </section><!-- /MAIN CONTENT -->
@@ -160,7 +170,7 @@
       <footer class="site-footer">
           <div class="text-center">
               2015 - Luxe
-              <a href="formInventory.php#" class="go-top">
+              <a href="clients.php#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
           </div>
@@ -186,9 +196,27 @@
   <script>
       //custom select box
 
+ 	$('#saleFinder').click(function(){
+ 		$('#main-content').hide();
+ 		var id = 'findSale';
+ 	    url = id;
+ 	    $.ajax({
+ 	    	type: 'POST',
+ 	        url: url+'.php',
+ 	        data:{
+ 	        	saleSomething: $("#saleSomething").val()
+ 	        },         
+ 	        success: function(response){
+ 	            $("#main-content").html(response);
+ 	            $("#main-content").show('');                
+ 	        },
+ 	    });
+ 	});
+
       $(function(){
           $('select.styled').customSelect();
       });
+      
 
   </script>
 
