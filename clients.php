@@ -104,7 +104,28 @@
       <section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i> All Customers</h3>
-          	<div class="row">
+				
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-panel">
+							<form class="form-inline">
+                         <!-- <div class="form-group" style="display: none;">
+                            <label class="col-sm-2 col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                               <input name="function" id="function" type="text" value="findClient">
+                            </div> 
+                        </div> -->
+								<div class="form-group">
+									<label class="sr-only">Client</label>
+									<input type="text" class="form-control" name="clientName" id="clientName" placeholder="Search Client">
+								</div>
+								<span id="clientFinder" class="btn btn-theme">Find</span>
+							</form>
+						</div><!-- /form-panel -->
+					</div><!-- /col-lg-12 -->
+				</div><!-- /row -->
+				
+          	<div class="row mt">
           		<div class="col-md-12">
 	                  	  <div class="content-panel">
 	                  	  	  <h4><i class="fa fa-angle-right"></i> Active Clients</h4>
@@ -228,6 +249,23 @@
     
   <script>
       //custom select box
+
+ 	$('#clientFinder').click(function(){
+ 		$('#main-content').hide();
+ 		var id = 'findClient';
+ 	    url = id;
+ 	    $.ajax({
+ 	    	type: 'POST',
+ 	        url: url+'.php',
+ 	        data:{
+ 	        	clientName: $("#clientName").val()
+ 	        },         
+ 	        success: function(response){
+ 	            $("#main-content").html(response);
+ 	            $("#main-content").show('');                
+ 	        },
+ 	    });
+ 	});
 
       $(function(){
           $('select.styled').customSelect();

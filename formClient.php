@@ -152,7 +152,7 @@
                           
                           <div class="form-group">
                               <div class="col-lg-10">
-					 						<button type="submit" class="btn btn-primary">Edit</button>
+					 						<button type="submit" class="btn btn-primary">Insert</button>
                               </div>
                           </div>
                       </form>
