@@ -242,8 +242,16 @@
 							 							 <?php 
 														 	$result = fiveLastClients();
 														 	$result2 = fiveLastProducts();
-															$i = 0;
+															$i = array();
+															$index = 0;
+															$index2 = 0;
 														 ?>
+														 <?php foreach($result2 as $row){?>
+															 
+							                        <?php $i[$index] = $row['ProdName'];
+															$index++;?>
+														  
+														  <?php } ?>
 														 <?php foreach($result as $row){?>
 															 
 							                        <div class="desc">
@@ -251,13 +259,14 @@
 							                       			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
 							                       		</div>
 							                       		<div class="details">
-							                       			<p><muted>2 Minutes Ago</muted><br/>
-							                       		  		<a><?php echo $row['ClientName'].' '.$row['ClientSurname'];?></a> bought this product<br/>
+							                       			<p><muted>Sales</muted><br/>
+							                       		  		<a><?php echo $row['ClientName'].' '.$row['ClientSurname'];?></a> bought this product <a><?php echo $i[$index2];?></a><br/>
 							                       			</p>
 							                       		</div>
 							                       </div>
 														  
-														  <?php } ?>
+														  <?php $index2++;
+													  		} ?>
 														  
 							                       
 							 
