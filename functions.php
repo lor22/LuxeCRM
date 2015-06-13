@@ -39,6 +39,15 @@
          Database::disconnect();
          return $result;
 	}
+	
+	function updateClientBuyRate($buyrate, $id){
+      $db = Database::connect();
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $db->prepare('UPDATE Clients SET ClientBuyRate=? WHERE ClientId=?');
+      $result = $stmt->execute(array($buyrate, $id));
+      Database::disconnect();
+      return $result;
+	}
 	//END EDITS
 	
 	//VIEWS
@@ -56,6 +65,20 @@
 	      $stmt = $db->query('select * from Clients where ClientActive = "YES";');
          Database::disconnect();
          return $stmt;
+	}
+	
+	function seeBuyRate($id){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->prepare('SELECT AVG(ProdPrice) as BR FROM Products JOIN ProductsBySales ON ProductsBySales.IdProduct = Products.ProdId JOIN Sales ON Sales.SalesId = ProductsBySales.IdSale WHERE Sales.IdClient=?');
+		$stmt->execute(array($id));
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		if($result > 0){
+			return $result;
+		}else{
+			return null;
+		}
 	}
 	
 	function viewNonActiveClients(){
