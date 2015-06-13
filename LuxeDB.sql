@@ -124,7 +124,11 @@ CREATE TABLE IF NOT EXISTS `Sales` (
 `SalesId` int(11) NOT NULL,
   `IdClient` int(11) NOT NULL,
   `EmployeeID` int(11) NOT NULL,
+<<<<<<< Updated upstream
   `SaleDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+=======
+  `SaleDate` datetime DEFAULT NULL
+>>>>>>> Stashed changes
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 --
