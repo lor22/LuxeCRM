@@ -117,7 +117,7 @@
 							<form class="form-inline">
 								<div class="form-group">
 									<label class="sr-only">Sales</label>
-									<input type="text" class="form-control" name="saleSomething" id="saleSomething" placeholder="Search Sale"><!--Edit this for sales-->
+									<input type="text" class="form-control" name="saleSomething" id="saleSomething" placeholder="Search Sale by Product"><!--Edit this for sales-->
 								</div>
 								<span id="saleFinder" class="btn btn-theme">Find</span>
 							</form>
