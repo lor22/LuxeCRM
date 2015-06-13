@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
+<<<<<<< HEAD
 -- Generation Time: Jun 08, 2015 at 01:46 PM
+=======
+-- Generation Time: Jun 13, 2015 at 04:14 PM
+>>>>>>> practice-branch
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -27,7 +31,11 @@ CREATE TABLE `Clients` (
   `ClientMail` varchar(30) COLLATE ascii_bin NOT NULL,
   `ClientPhone` varchar(11) COLLATE ascii_bin NOT NULL DEFAULT '',
   `ClientAddress` varchar(30) COLLATE ascii_bin NOT NULL,
+<<<<<<< HEAD
   `ClientBuyRate` double(2,1) NOT NULL,
+=======
+  `ClientBuyRate` double(7,2) NOT NULL,
+>>>>>>> practice-branch
   `ClientActive` enum('YES','NO') COLLATE ascii_bin NOT NULL DEFAULT 'YES'
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
@@ -36,10 +44,17 @@ CREATE TABLE `Clients` (
 --
 
 INSERT INTO `Clients` (`ClientId`, `ClientName`, `ClientSurname`, `ClientMail`, `ClientPhone`, `ClientAddress`, `ClientBuyRate`, `ClientActive`) VALUES
+<<<<<<< HEAD
 (8, 'Maria', 'Herrstand', 'mariaherr@mucho', '123456789', 'Gart street', 3.1, 'YES'),
 (9, 'Bob', 'Johnson', 'bjohn@heh.com', '123456789', 'erh street', 0.0, 'YES'),
 (10, 'Piotr', 'Frederyk', 'piotr@hello.com', '123456789', 'han street', 0.0, 'YES'),
 (11, 'Clark', 'Gabe', 'clark@hello.com', '123123', 'hey street', 0.0, 'YES');
+=======
+(8, 'Maria', 'Herrstand', 'mariaherr@mucho', '123456789', 'Gart street', 71.50, 'NO'),
+(9, 'Bob', 'Johnson', 'bjohn@heh.com', '123456789', 'erh street', 123.00, 'YES'),
+(10, 'Piotr', 'Frederyk', 'piotr@hello.com', '123456789', 'han street', 12.20, 'YES'),
+(11, 'Clark', 'Gabe', 'clark@hello.com', '123123', 'hey street', 51.10, 'YES');
+>>>>>>> practice-branch
 
 -- --------------------------------------------------------
 
@@ -85,8 +100,13 @@ CREATE TABLE `Products` (
 
 INSERT INTO `Products` (`ProdId`, `ProdName`, `ProdPrice`, `ProdUnits`, `ProdActive`) VALUES
 (7, 'Leather Wallet', 19.99, 20, 'YES'),
+<<<<<<< HEAD
 (8, 'bragafaja', 123.00, 0, 'YES'),
 (9, 'sombrero embudo', 12.20, 10, 'YES'),
+=======
+(8, 'Purse', 123.00, 0, 'YES'),
+(9, 'Hat', 12.20, 10, 'YES'),
+>>>>>>> practice-branch
 (10, 'Jacket', 90.00, 8, 'YES');
 
 -- --------------------------------------------------------
@@ -99,7 +119,11 @@ CREATE TABLE `ProductsBySales` (
   `IdProduct` int(11) NOT NULL,
   `IdSale` int(11) NOT NULL,
 `IdProductSale` int(11) NOT NULL
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+>>>>>>> practice-branch
 
 --
 -- Dumping data for table `ProductsBySales`
@@ -107,9 +131,16 @@ CREATE TABLE `ProductsBySales` (
 
 INSERT INTO `ProductsBySales` (`IdProduct`, `IdSale`, `IdProductSale`) VALUES
 (7, 14, 14),
+<<<<<<< HEAD
 (7, 22, 19),
 (8, 15, 15),
 (9, 17, 16),
+=======
+(8, 15, 15),
+(8, 22, 22),
+(9, 17, 16),
+(9, 21, 21),
+>>>>>>> practice-branch
 (10, 21, 18);
 
 -- --------------------------------------------------------
@@ -122,6 +153,7 @@ CREATE TABLE `Sales` (
 `SalesId` int(11) NOT NULL,
   `IdClient` int(11) NOT NULL,
   `EmployeeID` int(11) NOT NULL,
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   `SaleDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 <<<<<<< HEAD
@@ -136,6 +168,10 @@ CREATE TABLE `Sales` (
 =======
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 >>>>>>> origin/master
+=======
+  `SaleDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+>>>>>>> practice-branch
 
 --
 -- Dumping data for table `Sales`
@@ -146,7 +182,11 @@ INSERT INTO `Sales` (`SalesId`, `IdClient`, `EmployeeID`, `SaleDate`) VALUES
 (15, 9, 1, '2015-06-01 17:06:26'),
 (17, 10, 1, '2015-06-01 17:06:54'),
 (21, 11, 1, '2015-06-08 11:30:48'),
+<<<<<<< HEAD
 (22, 11, 1, '2015-06-08 11:35:00');
+=======
+(22, 8, 1, '2015-06-13 13:08:21');
+>>>>>>> practice-branch
 
 -- --------------------------------------------------------
 
@@ -230,7 +270,11 @@ MODIFY `ProdId` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 -- AUTO_INCREMENT for table `ProductsBySales`
 --
 ALTER TABLE `ProductsBySales`
+<<<<<<< HEAD
 MODIFY `IdProductSale` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+=======
+MODIFY `IdProductSale` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+>>>>>>> practice-branch
 --
 -- AUTO_INCREMENT for table `Sales`
 --
