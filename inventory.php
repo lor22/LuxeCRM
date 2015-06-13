@@ -91,6 +91,12 @@
                           <li><a href="clients.php">Check</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="sales.php">
+                          <i class="fa fa-money"></i>
+                          <span>Sales</span>
+                      </a>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -104,7 +110,28 @@
       <section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i>Inventory</h3>
-          	<div class="row">
+				
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-panel">
+							<form class="form-inline">
+                         <!-- <div class="form-group" style="display: none;">
+                            <label class="col-sm-2 col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                               <input name="function" id="function" type="text" value="findClient">
+                            </div> 
+                        </div> -->
+								<div class="form-group">
+									<label class="sr-only">Product</label>
+									<input type="text" class="form-control" name="productName" id="productName" placeholder="Search Product">
+								</div>
+								<span id="productFinder" class="btn btn-theme">Find</span>
+							</form>
+						</div><!-- /form-panel -->
+					</div><!-- /col-lg-12 -->
+				</div><!-- /row -->
+				
+          	<div class="row mt">
           		<div class="col-md-12">
 	                  	  <div class="content-panel">
 	                  	  	  <h4><i class="fa fa-angle-right"></i>Products</h4>
@@ -226,6 +253,23 @@
       $(function(){
           $('select.styled').customSelect();
       });
+		
+	 	$('#productFinder').click(function(){
+	 		$('#main-content').hide();
+	 		var id = 'findProduct';
+	 	    url = id;
+	 	    $.ajax({
+	 	    	type: 'POST',
+	 	        url: url+'.php',
+	 	        data:{
+	 	        	productName: $("#productName").val()
+	 	        },         
+	 	        success: function(response){
+	 	            $("#main-content").html(response);
+	 	            $("#main-content").show('');                
+	 	        },
+	 	    });
+	 	});
       
 
   </script>

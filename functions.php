@@ -39,6 +39,15 @@
          Database::disconnect();
          return $result;
 	}
+	
+	function updateClientBuyRate($buyrate, $id){
+      $db = Database::connect();
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $db->prepare('UPDATE Clients SET ClientBuyRate=? WHERE ClientId=?');
+      $result = $stmt->execute(array($buyrate, $id));
+      Database::disconnect();
+      return $result;
+	}
 	//END EDITS
 	
 	//VIEWS
@@ -56,6 +65,20 @@
 	      $stmt = $db->query('select * from Clients where ClientActive = "YES";');
          Database::disconnect();
          return $stmt;
+	}
+	
+	function seeBuyRate($id){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->prepare('SELECT AVG(ProdPrice) as BR FROM Products JOIN ProductsBySales ON ProductsBySales.IdProduct = Products.ProdId JOIN Sales ON Sales.SalesId = ProductsBySales.IdSale WHERE Sales.IdClient=?');
+		$stmt->execute(array($id));
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		if($result > 0){
+			return $result;
+		}else{
+			return null;
+		}
 	}
 	
 	function viewNonActiveClients(){
@@ -80,6 +103,18 @@
 	      $stmt = $db->query('select * from Products where ProdActive = "NO";');
          Database::disconnect();
          return $stmt;
+	}
+	
+	function viewSales(){
+      $db = Database::connect();
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $db->query('SELECT Sales.SalesId, Clients.ClientName, Clients.ClientSurname, Products.ProdName, Sales.SaleDate 
+		FROM Clients, Sales, ProductsBySales, Products
+		WHERE Sales.IdClient = Clients.ClientId
+		AND Sales.SalesId = ProductsBySales.IdSale
+		AND ProductsBySales.IdProduct = Products.ProdId');
+      Database::disconnect();
+      return $stmt;
 	}
 	//END VIEWS
 	
@@ -125,6 +160,27 @@
 			return null;
 		}
 	}
+	
+	function findProductByThis($name){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT * FROM Products WHERE ProdName LIKE "%'.$name.'%" ORDER BY ProdName ASC;');
+		return $stmt;
+	}
+	
+	function findClientByThis($name){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT * FROM Clients WHERE ClientName LIKE "%'.$name.'%" or ClientSurname LIKE "%'.$name.'%" or ClientMail LIKE "%'.$name.'%" ORDER BY ClientSurname ASC;');
+		return $stmt;
+	}
+	
+	function findSaleByThis($name){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT Sales.SalesId, Clients.ClientName, Clients.ClientSurname, Products.ProdName, Sales.SaleDate FROM Sales, Products, Clients, ProductsBySales WHERE Products.ProdId = ProductsBySales.`IdProduct` and Sales.`IdClient` = Clients.`ClientId` and Sales.`SalesId` = ProductsBySales.`IdSale` and Products.`ProdName` LIKE "%'.$name.'%"');
+		return $stmt;
+	}
 	//END FINDERS
 	
 	//MISCELLANEOUS 
@@ -145,6 +201,32 @@
       Database::disconnect();
       return $result;
 	}
+	
+	function fiveLastClients(){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT Clients.ClientName, Clients.ClientSurname, Sales.SaleDate 
+			FROM Clients, Sales, ProductsBySales
+			WHERE Sales.`IdClient` = Clients.`ClientId`
+			AND Sales.`SalesId` = ProductsBySales.`IdSale`
+			ORDER BY `SaleDate` DESC LIMIT 5');
+		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		//return $results;
+		return $stmt;
+	}
+	
+	function fiveLastProducts(){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT Products.`ProdName` FROM Products JOIN `ProductsBySales` ON Products.ProdId = ProductsBySales.IdProduct ORDER BY IdProductSale DESC LIMIT 0,5');
+		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		//return $results;
+		return $stmt;
+	}
+		
+
 	//END MISCELLANEOUS
 	
 	//VALIDATION

@@ -57,6 +57,13 @@
 				//error
 			}
 		break;
+		case "findClient":
+			if(findClientByThis($_POST["clientName"])){
+				header('Location: clients.php');
+			}else{
+			   //error
+			}
+		break;
 	}
 	
 

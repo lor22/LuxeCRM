@@ -91,6 +91,12 @@
                           <li><a  href="clients.php">Check</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="sales.php">
+                          <i class="fa fa-money"></i>
+                          <span>Sales</span>
+                      </a>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -152,7 +158,7 @@
                           
                           <div class="form-group">
                               <div class="col-lg-10">
-					 						<button type="submit" class="btn btn-primary">Edit</button>
+					 						<button type="submit" class="btn btn-primary">Insert</button>
                               </div>
                           </div>
                       </form>

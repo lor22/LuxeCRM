@@ -10,7 +10,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Clients</title>
+    <title>Sales</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -82,17 +82,17 @@
                   </li>
 						
                   <li class="sub-menu">
-                      <a class="active" href="javascript:;" >
+                      <a href="javascript:;" >
                           <i class="fa fa-user"></i>
                           <span>Clients</span>
                       </a>
                       <ul class="sub">
                           <li><a href="formClient.php">Insert</a></li>
-                          <li class="active"><a href="clients.php">Check</a></li>
+                          <li><a href="clients.php">Check</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="sales.php">
+                      <a class="active" href="sales.php">
                           <i class="fa fa-money"></i>
                           <span>Sales</span>
                       </a>
@@ -109,23 +109,17 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> All Customers</h3>
+          	<h3><i class="fa fa-angle-right"></i> All Sales</h3>
 				
 				<div class="row">
 					<div class="col-md-4">
 						<div class="form-panel">
 							<form class="form-inline">
-                         <!-- <div class="form-group" style="display: none;">
-                            <label class="col-sm-2 col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                               <input name="function" id="function" type="text" value="findClient">
-                            </div> 
-                        </div> -->
 								<div class="form-group">
-									<label class="sr-only">Client</label>
-									<input type="text" class="form-control" name="clientName" id="clientName" placeholder="Search Client">
+									<label class="sr-only">Sales</label>
+									<input type="text" class="form-control" name="saleSomething" id="saleSomething" placeholder="Search Sale"><!--Edit this for sales-->
 								</div>
-								<span id="clientFinder" class="btn btn-theme">Find</span>
+								<span id="saleFinder" class="btn btn-theme">Find</span>
 							</form>
 						</div><!-- /form-panel -->
 					</div><!-- /col-lg-12 -->
@@ -134,43 +128,30 @@
           	<div class="row mt">
           		<div class="col-md-12">
 	                  	  <div class="content-panel">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Active Clients</h4>
+	                  	  	  <h4><i class="fa fa-angle-right"></i>Sales</h4>
 	                  	  	  <hr>
 		                      <table class="table table-hover">
                               <thead>
                                  <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Mail</th>
-                                    <th>Phone</th>
-												<th>Address</th>
-												<th>Buy Rate</th>
-												<th>Client Active</th>
-												<th>Edit</th>
+                                    <th>Product</th>
+                                    <th>Date</th>
                                  </tr>
                               </thead>
                               <tbody>
                                  <?php
-                                    $results = viewActiveClients();
+                                    $results = viewSales();
                                     if($results -> rowCount()<=0){
                                        echo '<tr><td>No clients available</td></tr>';
                                     }else{
                                        foreach ($results as $row) {
-														$br = array();
-														$br = seeBuyRate($row['ClientId']);
                                           echo '<tr>';
-                                          echo '<td>'.$row['ClientId']. '</td>';
+                                          echo '<td>'.$row['SalesId']. '</td>';
                                           echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
-                                          echo '<td>'.$row['ClientMail'].'</td>';
-                                          echo '<td>'.$row['ClientPhone'].'</td>';
-														echo '<td>'.$row['ClientAddress'].'</td>';
-														echo '<td>'.$br['BR'].'</td>';
-														echo '<td><span class="label label-success">'.$row['ClientActive'].'</span></td>';
-                                          echo '<td>
-                                               <a href="editClient.php?idC='.$row['ClientId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                               </td>';
+                                          echo '<td>'.$row['ProdName'].'</td>';
+                                          echo '<td>'.$row['SaleDate'].'</td>';
                                           echo '</tr>';
-														updateClientBuyRate($br['BR'], $row['ClientId']);
                                        }
                                     }
                                  ?>
@@ -178,53 +159,6 @@
                             </table>
 	                  	  </div><!--/content-panel -->
 	            </div><!-- /col-md-12 -->
-					
-          		<div class="col-md-12 mt">
-	                  	  <div class="content-panel">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Non Active Clients</h4>
-	                  	  	  <hr>
-		                      <table class="table">
-                              <thead>
-                                 <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Mail</th>
-                                    <th>Phone</th>
-												<th>Address</th>
-												<th>Buy Rate</th>
-												<th>Client Active</th>
-												<th>Edit</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <?php
-                                    $results = viewNonActiveClients();
-                                    if($results -> rowCount()<=0){
-                                       echo '<tr><td>No clients available</td></tr>';
-                                    }else{
-                                       foreach ($results as $row) {
-														$br = array();
-														$br = seeBuyRate($row['ClientId']);
-                                          echo '<tr>';
-                                          echo '<td>'.$row['ClientId']. '</td>';
-                                          echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
-                                          echo '<td>'.$row['ClientMail'].'</td>';
-                                          echo '<td>'.$row['ClientPhone'].'</td>';
-														echo '<td>'.$row['ClientAddress'].'</td>';
-														echo '<td>'.$br['BR'].'</td>';
-														echo '<td><span class="label label-danger">'.$row['ClientActive'].'</span></td>';
-                                          echo '<td>
-                                               <a href="editClient.php?idC='.$row['ClientId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                               </td>';
-                                          echo '</tr>';
-														updateClientBuyRate($br['BR'], $row['ClientId']);
-                                       }
-                                    }
-                                 ?>
-                              </tbody>
-                            </table>
-	                  	  </div><!--/content-panel -->
-	            </div><!-- /col-md-12 mt -->
 					
           	</div><!-- /row-->
 			
@@ -262,15 +196,15 @@
   <script>
       //custom select box
 
- 	$('#clientFinder').click(function(){
+ 	$('#saleFinder').click(function(){
  		$('#main-content').hide();
- 		var id = 'findClient';
+ 		var id = 'findSale';
  	    url = id;
  	    $.ajax({
  	    	type: 'POST',
  	        url: url+'.php',
  	        data:{
- 	        	clientName: $("#clientName").val()
+ 	        	saleSomething: $("#saleSomething").val()
  	        },         
  	        success: function(response){
  	            $("#main-content").html(response);
