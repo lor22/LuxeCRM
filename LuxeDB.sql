@@ -125,10 +125,14 @@ CREATE TABLE `Sales` (
 <<<<<<< Updated upstream
   `SaleDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   `SaleDate` datetime DEFAULT NULL
 >>>>>>> Stashed changes
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+>>>>>>> origin/master
 =======
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 >>>>>>> origin/master
