@@ -129,7 +129,8 @@
 										<h5 class="mt"><?php $topP = topProduct();
 													$prodName = $topP['ProdName'];
 													echo $prodName;?></h5>
-										<h6>TOTAL SALES: 1388</h6>
+										<h6>TOTAL SALES: <?php $count = $topP['numberOfProd'];
+											echo $count; ?></h6>
 										<a class="btn btn-small btn-theme04" href="sales.php">FULL REPORT</a>
 									</div>
 								</div><!-- /col-md-4 -->
@@ -161,11 +162,11 @@
 													$mail = $top['ClientMail'];
 													echo $name.' '.$surname;?></b></p>
 										<div class="row">
-											<div class="col-md-6">
+											<!--<div class="col-md-6">
 												<p class="small mt">Mail</p>
-												<p><?php echo $mail;?></p>
-											</div>
-											<div class="col-md-6">
+												<p><?php //echo $mail;?></p>
+											</div>-->
+											<div class="col-md-12">
 												<p class="small mt">Buy Rate per Month</p>
 												<p><?php echo $buyRate;?>%</p>
 											</div>
@@ -179,12 +180,12 @@
 					<div class="row mt">
                       <!--CUSTOM CHART START -->
                       <div class="border-head">
-                          <h3>VISITS</h3>
+                          <h3>SALES PER MONTH</h3>
                       </div>
                       <div class="custom-bar-chart">
                           <ul class="y-axis">
-                              <li><span>10.000</span></li>
-                              <li><span>8.000</span></li>
+                              <li><span>1000</span></li>
+                              <li><span>8</span></li>
                               <li><span>6.000</span></li>
                               <li><span>4.000</span></li>
                               <li><span>2.000</span></li>
@@ -231,7 +232,7 @@
                   
                   <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
-						<h3>Last Sells</h3>
+						<h3><a href="sales.php" style="color: white;">Last Sells</a></h3>
 							  
 							              
 							 
@@ -349,6 +350,7 @@
                     {type: "block", label: "Regular event", }
                 ]
             });
+				
         });
         
         

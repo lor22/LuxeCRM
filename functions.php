@@ -187,7 +187,7 @@
 	function topUser(){
 		$db = Database::connect();
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $db->query('SELECT * FROM Clients WHERE ClientBuyRate >= 0.5');
+		$stmt = $db->query('SELECT * from Clients WHERE ClientBuyRate=(SELECT MAX(ClientBuyRate) FROM Clients)');
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
       Database::disconnect();
       return $result;
@@ -196,7 +196,7 @@
 	function topProduct(){
 		$db = Database::connect();
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $db->query('SELECT * FROM Products');
+		$stmt = $db->query('SELECT ProductsBySales.IdProduct, COUNT(IdProduct) as numberOfProd, Products.ProdName FROM ProductsBySales, Products Where Products.ProdID = ProductsBySales.IdProduct GROUP BY IdProduct ORDER BY COUNT(IdProduct) DESC');
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
       Database::disconnect();
       return $result;

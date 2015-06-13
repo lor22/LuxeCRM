@@ -136,14 +136,14 @@
 	                  	  <div class="content-panel">
 	                  	  	  <h4><i class="fa fa-angle-right"></i> Active Clients</h4>
 	                  	  	  <hr>
-		                      <table class="table table-hover">
+		                      <table class="table table-advance table-hover">
                               <thead>
                                  <tr>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Mail</th>
-                                    <th>Phone</th>
-												<th>Address</th>
+                                    <th class="hidden-phone">Phone</th>
+												<th class="hidden-phone">Address</th>
 												<th>Buy Rate</th>
 												<th>Client Active</th>
 												<th>Edit</th>
@@ -162,8 +162,8 @@
                                           echo '<td>'.$row['ClientId']. '</td>';
                                           echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
                                           echo '<td>'.$row['ClientMail'].'</td>';
-                                          echo '<td>'.$row['ClientPhone'].'</td>';
-														echo '<td>'.$row['ClientAddress'].'</td>';
+                                          echo '<td class="hidden-phone">'.$row['ClientPhone'].'</td>';
+														echo '<td class="hidden-phone">'.$row['ClientAddress'].'</td>';
 														echo '<td>'.$br['BR'].'</td>';
 														echo '<td><span class="label label-success">'.$row['ClientActive'].'</span></td>';
                                           echo '<td>
@@ -189,8 +189,8 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Mail</th>
-                                    <th>Phone</th>
-												<th>Address</th>
+                                    <th class="hidden-phone">Phone</th>
+												<th class="hidden-phone">Address</th>
 												<th>Buy Rate</th>
 												<th>Client Active</th>
 												<th>Edit</th>
@@ -209,8 +209,8 @@
                                           echo '<td>'.$row['ClientId']. '</td>';
                                           echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
                                           echo '<td>'.$row['ClientMail'].'</td>';
-                                          echo '<td>'.$row['ClientPhone'].'</td>';
-														echo '<td>'.$row['ClientAddress'].'</td>';
+                                          echo '<td class="hidden-phone">'.$row['ClientPhone'].'</td>';
+														echo '<td class="hidden-phone">'.$row['ClientAddress'].'</td>';
 														echo '<td>'.$br['BR'].'</td>';
 														echo '<td><span class="label label-danger">'.$row['ClientActive'].'</span></td>';
                                           echo '<td>
