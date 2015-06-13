@@ -33,7 +33,8 @@
                                     echo '<td>'.$row['ClientPhone'].'</td>';
 												echo '<td>'.$row['ClientAddress'].'</td>';
 												echo '<td>'.$row['ClientBuyRate'].'</td>';
-												echo '<td><span class="label label-success">'.$row['ClientActive'].'</span></td>';
+												if ($row['ClientActive'] == 'YES') echo '<td><span class="label label-success">'.$row['ClientActive'].'</span></td>';
+												if ($row['ClientActive'] == 'NO') echo '<td><span class="label label-danger">'.$row['ClientActive'].'</span></td>';
                                     echo '<td>
                                          <a href="editClient.php?idC='.$row['ClientId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                          </td>';
