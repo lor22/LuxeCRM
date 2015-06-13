@@ -205,7 +205,7 @@
 	function fiveLastClients(){
 		$db = Database::connect();
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $db->query('SELECT Clients.ClientName, Clients.ClientSurname, Sales.SaleDate 
+		$stmt = $db->query('SELECT Clients.ClientName, Clients.ClientSurname, DAY(Sales.SaleDate) as day, MONTH(Sales.SaleDate) as month, YEAR(Sales.SaleDate) as year 
 			FROM Clients, Sales, ProductsBySales
 			WHERE Sales.`IdClient` = Clients.`ClientId`
 			AND Sales.`SalesId` = ProductsBySales.`IdSale`
@@ -226,7 +226,42 @@
 		return $stmt;
 	}
 		
-
+	function monthlySales($month){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->prepare('SELECT SUM(ProdPrice) as total FROM (SELECT IdProduct FROM ProductsBySales JOIN `Sales` WHERE ProductsBySales.IdSale = Sales.SalesId AND MONTH(`SaleDate`) = ?) as hello, Products WHERE hello.IdProduct = Products.ProdId');
+		$stmt->execute(array($month));
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		if($result > 0){
+			return $result;
+		}else{
+			return null;
+		}
+	}
+	
+	function totalProducts($month){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->prepare('SELECT COUNT(*) as products FROM (SELECT IdProduct FROM ProductsBySales JOIN `Sales` WHERE ProductsBySales.IdSale = Sales.SalesId AND MONTH(`SaleDate`) = ?) as hello, Products WHERE hello.IdProduct = Products.ProdId');
+		$stmt->execute(array($month));
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		Database::disconnect();
+		if($result > 0){
+			return $result;
+		}else{
+			return null;
+		}
+	}
+	
+	function getAllProd(){
+		$db = Database::connect();
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stmt = $db->query('SELECT COUNT(*) as ALLproducts FROM (SELECT IdProduct FROM ProductsBySales JOIN `Sales` WHERE ProductsBySales.IdSale = Sales.SalesId) as hello, Products WHERE hello.IdProduct = Products.ProdId');
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+      Database::disconnect();
+      return $result;
+	}	
 	//END MISCELLANEOUS
 	
 	//VALIDATION

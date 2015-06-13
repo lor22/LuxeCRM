@@ -115,11 +115,7 @@
           <section class="wrapper" id="wrapp">
 
               <div class="row">
-                  <div class="col-lg-9 main-chart">
-                  
-                  
-                  
-                      
+                  <div class="col-lg-9 main-chart">         
                       <div class="row mt">
                       	
 								<div class="col-md-4 col-md-4">
@@ -141,10 +137,25 @@
 										<div class="darkblue-header">
 											<h5>REVENUE</h5>
 										</div>
+										<?php
+										$total = [];
+										for($i = 0; $i < 12;$i++)
+										{
+											$total[$i] = totalProducts($i+1);
+											$t = $total[$i];
+										}
+										?>
 										<div class="chart mt">
-											<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+											<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[<?php
+											for($j=0;$j<12;$j++){
+												echo $total[$j]['products'];
+												if($j!=11){
+													echo ',';
+												}
+											}
+											?>]"></div>
 										</div>
-										<p class="mt"><b>$ 17,980</b><br/>Month Income</p>
+										<p class="mt"><b></b><br/>Products sold: <?php $x = getAllProd(); echo $x['ALLproducts'];?></p>
 									</div>
 								</div><!-- /col-md-4 -->
                       	
@@ -185,41 +196,49 @@
                       <div class="custom-bar-chart">
                           <ul class="y-axis">
                               <li><span>1000</span></li>
-                              <li><span>8</span></li>
-                              <li><span>6.000</span></li>
-                              <li><span>4.000</span></li>
-                              <li><span>2.000</span></li>
+                              <li><span>800</span></li>
+                              <li><span>600</span></li>
+                              <li><span>400</span></li>
+                              <li><span>200</span></li>
                               <li><span>0</span></li>
                           </ul>
+								  <?php
+								  $result1 = monthlySales(1);
+								  $result2 = monthlySales(2);
+								  $result3 = monthlySales(3);
+								  $result4 = monthlySales(4);
+								  $result5 = monthlySales(5);
+								  $result6 = monthlySales(6);
+								  ?>
                           <div class="bar">
                               <div class="title">JAN</div>
-                              <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result1['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result1['total']/10);?>%</div>
                           </div>
                           <div class="bar ">
                               <div class="title">FEB</div>
-                              <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top">50%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result2['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result2['total']/10);?>%</div>
                           </div>
                           <div class="bar ">
                               <div class="title">MAR</div>
-                              <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top">60%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result3['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result3['total']/10);?>%</div>
                           </div>
                           <div class="bar ">
                               <div class="title">APR</div>
-                              <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top">45%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result4['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result4['total']/10);?>%</div>
                           </div>
                           <div class="bar">
                               <div class="title">MAY</div>
-                              <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top">32%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result5['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result5['total']/10);?>%</div>
                           </div>
                           <div class="bar ">
                               <div class="title">JUN</div>
-                              <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top">62%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result6['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result6['total']/10);?>%</div>
                           </div>
                           <div class="bar">
                               <div class="title">JUL</div>
-                              <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
+                              <div class="value tooltips" data-original-title="<?php echo $result7['total'];?>€" data-toggle="tooltip" data-placement="top"><?php echo ($result7['total']/10);?>%</div>
                           </div>
-                      </div>
+							  </div>
                       <!--custom chart end-->
 					</div><!-- /row -->	
 					
@@ -259,7 +278,7 @@
 							                       			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
 							                       		</div>
 							                       		<div class="details">
-							                       			<p><muted>Date of sell <?php echo $row['SaleDate'];?></muted><br/>
+							                       			<p><muted>Date of sell <?php echo $row['day'].'-'.$row['month'].'-'.$row['year'];?></muted><br/>
 							                       		  		<a><?php echo $row['ClientName'].' '.$row['ClientSurname'];?></a> bought this product <a><?php echo $i[$index2];?></a><br/>
 							                       			</p>
 							                       		</div>
