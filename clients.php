@@ -156,18 +156,21 @@
                                        echo '<tr><td>No clients available</td></tr>';
                                     }else{
                                        foreach ($results as $row) {
+														$br = array();
+														$br = seeBuyRate($row['ClientId']);
                                           echo '<tr>';
                                           echo '<td>'.$row['ClientId']. '</td>';
                                           echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
                                           echo '<td>'.$row['ClientMail'].'</td>';
                                           echo '<td>'.$row['ClientPhone'].'</td>';
 														echo '<td>'.$row['ClientAddress'].'</td>';
-														echo '<td>'.$row['ClientBuyRate'].'</td>';
+														echo '<td>'.$br['BR'].'</td>';
 														echo '<td><span class="label label-success">'.$row['ClientActive'].'</span></td>';
                                           echo '<td>
                                                <a href="editClient.php?idC='.$row['ClientId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                                </td>';
                                           echo '</tr>';
+														updateClientBuyRate($br['BR'], $row['ClientId']);
                                        }
                                     }
                                  ?>
@@ -200,18 +203,21 @@
                                        echo '<tr><td>No clients available</td></tr>';
                                     }else{
                                        foreach ($results as $row) {
+														$br = array();
+														$br = seeBuyRate($row['ClientId']);
                                           echo '<tr>';
                                           echo '<td>'.$row['ClientId']. '</td>';
                                           echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
                                           echo '<td>'.$row['ClientMail'].'</td>';
                                           echo '<td>'.$row['ClientPhone'].'</td>';
 														echo '<td>'.$row['ClientAddress'].'</td>';
-														echo '<td>'.$row['ClientBuyRate'].'</td>';
+														echo '<td>'.$br['BR'].'</td>';
 														echo '<td><span class="label label-danger">'.$row['ClientActive'].'</span></td>';
                                           echo '<td>
                                                <a href="editClient.php?idC='.$row['ClientId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                                </td>';
                                           echo '</tr>';
+														updateClientBuyRate($br['BR'], $row['ClientId']);
                                        }
                                     }
                                  ?>
