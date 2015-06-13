@@ -30,7 +30,8 @@
                                     echo '<td>'. $row['ProdName'].'</td>';
                                     echo '<td>'. $row['ProdPrice'].'</td>';
                                     echo '<td>'. $row['ProdUnits'].'</td>';
-												echo '<td><span class="label label-success">'.$row['ProdActive'].'</span></td>';
+												if ($row['ClientActive'] == 'YES') echo '<td><span class="label label-success">'.$row['ProdActive'].'</span></td>';
+												if ($row['ClientActive'] == 'NO') echo '<td><span class="label label-danger">'.$row['ProdActive'].'</span></td>';
                                     echo '<td>
                                          <a href="editProduct.php?id='.$row['ProdId'].'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                          </td>';

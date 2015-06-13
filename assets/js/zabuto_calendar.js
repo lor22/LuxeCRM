@@ -527,7 +527,7 @@ $.fn.zabuto_calendar_defaults = function () {
         show_previous: true,
         show_next: true,
         cell_border: false,
-        today: false,
+        today: true,
         show_days: true,
         weekstartson: 1,
         nav_icon: false,
