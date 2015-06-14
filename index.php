@@ -173,10 +173,6 @@
 													$mail = $top['ClientMail'];
 													echo $name.' '.$surname;?></b></p>
 										<div class="row">
-											<!--<div class="col-md-6">
-												<p class="small mt">Mail</p>
-												<p><?php //echo $mail;?></p>
-											</div>-->
 											<div class="col-md-12">
 												<p class="small mt">Buy Rate per Month</p>
 												<p><?php echo $buyRate;?>%</p>
@@ -252,11 +248,6 @@
                   <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
 						<h3><a href="sales.php" style="color: white;">Last Sells</a></h3>
-							  
-							              
-							 
-							 <!-- First Action -->
-							                       
 							 
 							 							 <?php 
 														 	$result = fiveLastClients();

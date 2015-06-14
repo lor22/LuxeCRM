@@ -115,12 +115,6 @@
 					<div class="col-md-4">
 						<div class="form-panel">
 							<form class="form-inline">
-                         <!-- <div class="form-group" style="display: none;">
-                            <label class="col-sm-2 col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                               <input name="function" id="function" type="text" value="findClient">
-                            </div> 
-                        </div> -->
 								<div class="form-group">
 									<label class="sr-only">Product</label>
 									<input type="text" class="form-control" name="productName" id="productName" placeholder="Search Product">
