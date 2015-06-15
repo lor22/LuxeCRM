@@ -175,7 +175,7 @@
 										<div class="row">
 											<div class="col-md-12">
 												<p class="small mt">Buy Rate per Month</p>
-												<p><?php echo $buyRate;?>%</p>
+												<p><?php echo $buyRate;?>€</p>
 											</div>
 										</div>
 									</div>
