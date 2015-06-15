@@ -150,7 +150,7 @@
                                           echo '<td>'.$row['SalesId']. '</td>';
                                           echo '<td>'.$row['ClientName'].' '.$row['ClientSurname'].'</td>';
                                           echo '<td>'.$row['ProdName'].'</td>';
-                                          echo '<td>'.$row['SaleDate'].'</td>';
+                                          echo '<td>'.$row['year'].'/'.$row['month'].'/'.$row['day'].'</td>';
                                           echo '</tr>';
                                        }
                                     }

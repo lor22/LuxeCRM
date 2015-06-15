@@ -108,7 +108,7 @@
 	function viewSales(){
       $db = Database::connect();
       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stmt = $db->query('SELECT Sales.SalesId, Clients.ClientName, Clients.ClientSurname, Products.ProdName, Sales.SaleDate 
+      $stmt = $db->query('SELECT Sales.SalesId, Clients.ClientName, Clients.ClientSurname, Products.ProdName, YEAR(Sales.SaleDate) as year, MONTH(Sales.SaleDate) as month, DAY(Sales.SaleDate) as day 
 		FROM Clients, Sales, ProductsBySales, Products
 		WHERE Sales.IdClient = Clients.ClientId
 		AND Sales.SalesId = ProductsBySales.IdSale

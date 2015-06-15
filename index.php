@@ -165,7 +165,7 @@
 										<div class="white-header">
 											<h5>TOP CUSTOMER</h5>
 										</div>
-										<p><img src="assets/img/clients/ui-zac.jpg" class="img-circle" width="80"></p>
+										<p><img src="assets/img/clients/fr-10.jpg" class="img-circle" width="80"></p>
 										<p><b><?php $top = topUser();
 													$name = $top['ClientName'];
 													$surname = $top['ClientSurname'];
